@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Darul Ifta | Home</title>
+</head>
+<body>
+<div>
+    <h1>Welcome to Darul Ifta</h1>
+    <span sec:authentication="name">Username</span>
+
+    <span sec:authentication="principal.authorities">Roles</span>
+
+    <div sec:authorize="isAuthenticated()">
+        Welcome <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        You are authenticated!
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
+
+    <div sec:authorize="hasAnyAuthority('MUFTI', 'MAINMUFTI', 'ADMIN')">
+        <a href="/new">Create New Product</a>
+    </div>
+</div>
+</body>
+</html>

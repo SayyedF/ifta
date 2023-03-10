@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{_public-layout(title='Sample Title')}">
+
+<div layout:fragment="content" >
+
+    <!--Content of the page-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${sectionHeading}">Fatawa List</h4>
+                    <div th:replace="fragments :: fatwa-list (${fatwaList})"></div>
+                    <!--<div th:if="${@fatwaService.isUser()}"
+                         th:replace="fragments :: fatwa-list (${fatwaList})"></div>
+
+                    <div th:if="${@fatwaService.hasRole('MUFTI')}"
+                         th:replace="fragments :: yet-to-answer-fatwa-list (${fatwaList},${@fatwaService.getCurrentUser().getId()})"></div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+</div>
+</html>

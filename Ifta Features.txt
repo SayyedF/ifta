@@ -1,0 +1,27 @@
+Anonymous:
+1. View list of fatwa
+2. Search fatwa
+3. View any fatwa by fatwaId
+
+User (role: User):
+1. Sign up/Sign in
+2. Edit profile and password
+3. Ask (Submit question)
+
+User (role: Mufti):
+1. Answer any question
+2. Assign question to himself or any mufti
+3. View his answered questions
+4. Edit answer before it's published(approved by Main Mufti)
+
+User (role: Main Mufti):
+1. Answer any question
+2. Assign question to himself or any mufti
+3. View his answered questions
+4. Edit any answer
+5. Approve/Un-approve answers
+
+User (role: Admin):
+1. Manage Users and Roles
+2. Add categories, topics, tags
+3. Delete fatwa

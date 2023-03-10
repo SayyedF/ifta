@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="fragments :: header ('tag', ${title})"></head>
+
+<body>
+
+<div th:replace="fragments :: preloader"></div>
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+    <div th:replace="fragments :: navigation-menu"></div>
+    <div th:replace="fragments :: header-bar"></div>
+
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper container">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="page-header-title">
+                                                <h5 class="m-b-10">Horizontal Layout 2</h5>
+                                            </div>
+                                            <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                                <li class="breadcrumb-item"><a href="#!">Page Layout</a></li>
+                                                <li class="breadcrumb-item"><a href="#!">Horizontal Layout 2</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout:fragment="content">
+                                <p>Changing contents</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<div th:replace="fragments :: scripts ('tag')"></div>
+<script>
+    (function() {
+        if ($('#layout-sidenav').hasClass('sidenav-horizontal') || window.layoutHelpers.isSmallScreen()) {
+            return;
+        }
+        try {
+            window.layoutHelpers._getSetting("Rtl")
+            window.layoutHelpers.setCollapsed(
+                localStorage.getItem('layoutCollapsed') === 'true',
+                false
+            );
+        } catch (e) {}
+    })();
+    $(function() {
+        $('#layout-sidenav').each(function() {
+            new SideNav(this, {
+                orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
+            });
+        });
+        $('body').on('click', '.layout-sidenav-toggle', function(e) {
+            e.preventDefault();
+            window.layoutHelpers.toggleCollapsed();
+            if (!window.layoutHelpers.isSmallScreen()) {
+                try {
+                    localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
+                } catch (e) {}
+            }
+        });
+    });
+    $(document).ready(function() {
+        $("#pcoded").pcodedmenu({
+            themelayout: 'horizontal',
+            MenuTrigger: 'hover',
+            SubMenuTrigger: 'hover',
+        });
+    });
+</script>
+
+</body>
+</html>

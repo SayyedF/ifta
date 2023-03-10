@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_public-layout(title='Questions')}">
+
+<div layout:fragment="content" >
+
+    <!--Content of the page-->
+    <div  th:replace="fragments :: show-message (${message})"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Fatawa List</h4>
+                    <div th:replace="fragments :: yet-to-answer-fatwa-list (${fatwaList},${userId})"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+</div>
+</html>

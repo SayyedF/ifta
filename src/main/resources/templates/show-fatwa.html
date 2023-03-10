@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_public-layout(title='Show Fatwa')}">
+
+<div layout:fragment="content" >
+
+    <!--Content of the page-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-primary">
+                <div class="card-header" th:text="${fatwa.topic.category.name} + ' >> ' + ${fatwa.topic.getName()}">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text='${fatwa.title}'>Primary card title</h5>
+                    <p class="card-text" th:text='${fatwa.question}'></p>
+                    <br>
+                    <h6>Answer:</h6>
+                    <p class="card-text" th:text="${fatwa.answer != null ? fatwa.answer : 'Question is being reviewed.'}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer"><small th:if="${fatwa.answered}" th:text="'Answered on: ' + ${fatwa.answeredOn}">Last updateed 3 min ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

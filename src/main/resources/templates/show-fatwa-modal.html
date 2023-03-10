@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--<div id="fmodal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">-->
+            <div class="modal-header">
+                <h5 class="modal-title" th:text="${modal.title}">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div th:if="${modal.fatwa}" class="modal-body">
+                <h5 class="card-title" th:text='${modal.fatwa.title}'>Primary card title</h5>
+                <p class="card-text" th:text='${modal.fatwa.question}'></p>
+                <br>
+                <h6>Answer:</h6>
+                <p class="card-text" th:text="${modal.fatwa.answer != null ? modal.fatwa.answer : 'Yet to answer.'}"></p>
+            </div>
+            <div class="modal-footer">
+                <a th:each="btn : ${modal.buttons}"
+                   th:href="${btn.url}"
+                   th:class="${btn.classs}" th:text="${btn.name}">Button title</a>
+                <a type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</a>
+                <!--<div th:each="btn : ${modal.buttons}">
+                    <form th:unless="${btn.isCloseBtn()}" method="post">
+                        <a th:href="${btn.url}"
+                           th:class="${btn.classs}" th:text="${btn.name}">Button title</a>
+                    </form>
+                    <a th:if="${btn.isCloseBtn()}"
+                       th:class="${btn.classs}" th:text="${btn.name}" data-dismiss="modal">Button title</a>
+                </div>-->
+            </div>
+        <!--</div>
+    </div>
+</div>-->
+</html>

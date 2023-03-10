@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_public-layout(title='Stomp Over WebSocket with SockJS')}">
+
+<div layout:fragment="content" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <div class="input-group">
+                    <input type="text" id="from" class="form-control" placeholder="Choose a nickname"/>
+                    <div class="btn-group">
+                        <button type="button" id="connect" class="btn btn-sm btn-outline-secondary" onclick="connect()">Connect</button>
+                        <button type="button" id="disconnect" class="btn btn-sm btn-outline-secondary" onclick="disconnect()" disabled>Disconnect</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="input-group" id="sendmessage" style="display: none;">
+                    <input type="text" id="message" class="form-control" placeholder="Message">
+                    <div class="input-group-append">
+                        <button id="send" class="btn btn-primary" onclick="send()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="content"></div>
+            <div>
+                <span class="float-right">
+                    <button id="clear" class="btn btn-primary" onclick="clearBroadcast()" style="display: none;">Clear</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript">
+    var stompClient = null;
+    var userName = $("#from").val();
+
+    function setConnected(connected) {
+        $("#from").prop("disabled", connected);
+        $("#connect").prop("disabled", connected);
+        $("#disconnect").prop("disabled", !connected);
+        if (connected) {
+            $("#sendmessage").show();
+        } else {
+            $("#sendmessage").hide();
+        }
+    }
+
+    function connect() {
+        userName = $("meta[name='_username']").attr("content");//$("#from").val();
+        if(userName == undefined) {
+            userName = $("#from").val();
+        }
+        if (userName == null || userName === "") {
+            alert('Please input a nickname!');
+            return;
+        }
+
+        var socket = new SockJS('/broadcast');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function () {
+            stompClient.subscribe('/topic/messages', function (output) {
+                showBroadcastMessage(createTextNode(JSON.parse(output.body)));
+            });
+
+            stompClient.subscribe('/user/topic/messages', function (output) {
+                showBroadcastMessage(createTextNode(JSON.parse(output.body)));
+            });
+
+            sendConnection(' connected to server');
+            setConnected(true);
+        }, function (err) {
+            alert('error' + err);
+        });
+    }
+
+    function disconnect() {
+        if (stompClient != null) {
+            sendConnection(' disconnected from server');
+
+            stompClient.disconnect(function() {
+                console.log('disconnected...');
+                setConnected(false);
+            });
+        }
+    }
+
+    function sendConnection(message) {
+        var text = userName + message;
+        sendBroadcast({'from': 'server', 'text': text});
+    }
+
+    function sendBroadcast(json) {
+        stompClient.send("/app/broadcast", {}, JSON.stringify(json));
+    }
+
+    function send() {
+        var text = $("#message").val();
+        sendBroadcast({'from': userName, 'text': text});
+        $("#message").val("");
+    }
+
+    function createTextNode(messageObj) {
+        return '<div class="row alert alert-info"><div class="col-md-8">' +
+            messageObj.text +
+            '</div><div class="col-md-4 text-right"><small>[<b>' +
+            messageObj.from +
+            '</b> ' +
+            messageObj.time +
+            ']</small>' +
+            '</div></div>';
+    }
+
+    function showBroadcastMessage(message) {
+        $("#content").html($("#content").html() + message);
+        $("#clear").show();
+    }
+
+    function clearBroadcast() {
+        $("#content").html("");
+        $("#clear").hide();
+    }
+</script>-->
+</html>

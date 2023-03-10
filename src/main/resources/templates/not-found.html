@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_public-layout(title='Not Found')}">
+
+<div layout:fragment="content" >
+
+    <!--Content of the page-->
+    <div class="row justify-content-center h-100">
+        <div class="col-xl-6">
+            <div class="error-content">
+                <div class="card mb-0">
+                    <div class="card-body text-center pt-5">
+                        <h1 class="error-text text-primary">404</h1>
+                        <h4 class="mt-4"><i class="fa fa-thumbs-down text-danger"></i> Bad Request</h4>
+                        <p>Your Request resulted in an error.</p>
+                        <form class="mt-5 mb-5">
+
+                            <div class="text-center mb-4 mt-4"><a th:href="@{/test}" class="btn btn-primary">Go to Homepage</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</html>
